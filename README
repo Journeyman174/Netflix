@@ -1,0 +1,38 @@
+# Netflix
+
+ Netflix realizeaza gestionarea serialelor cinefilului Andrei in perioada de pandemeie.
+Pentru gestionarea serialelor am utilizat urmatoarele structuri de date : 
+	3 liste generice simplu inlantuite, memorate in vectorul categ[] pentru categoriile 
+1-tendinte, 2-documentare, 3-tutoriale pentru limbajul C - TCelulag, *TLG
+	2 structuri de date TSerial si TSezon pentru memorarea informatiilor 
+privind serialele si sezoanele lor
+	1 lista generica simplu inlantuita Top10 - TCelulag, *TLG
+	1 coada de seriale watch_later - TCoada, *AQ
+	2 stive currently_watching si history - TStiva, *ASt
+
+Am implementat comenzile precizate, respectand cerintele temei.
+Programul principal consta intr-o bucla while care citeste liniile din fisierul de intrare
+in_file, linie cu linie. Apoi, recunoasterea comenzii se face prin compararea cu un set
+fix de variabile ce contine numele comenzilor.
+	Comanda add - adaugare serial, adauga in listele din categoriile 1, 2, 3 gestionate
+cu ajutorul vectorului categ[], serialele indicate. Functia corespunzatoare este
+AdaugaSerial() - este definita in lista.c, ce contine si celelalte functiile de gestionare
+a listelor.
+	Comanda add_sez - adauga la serialul precizat un nou sezon, serialul la care
+se adauga sezonul nu se afla in stiva history. Serialul la care se adauga sezonul
+se poate afla atat in listele din cele 4 categorii, precum si in coada watch_later si 
+in stiva currently_watching. Functiile corespunzatoare sunt : AdaugaSezon() in liste, 
+AdaugaSezonQ() pentru coada watch_later - sunt definite in tema2.c si utilizeaza functiile
+din coada.c, iar functia AdaugaSezonS pentru stiva currently_watching se gaseste in stiva.c .
+	Comanda add_top - adauga un serial in lista Top10, lista care contine maxim 10
+seriale. Functia corespunzatoare este AdaugaSerialTop() - este definita in lista.c, 
+ce contine si celelalte functiile de gestionare a listelor.
+	Comanda later - muta un serial din cele 4 categorii in coada watch_later
+pentru a fi vizionat mai tarziu. Comanda este implementata cu functia MutaWatchLater()
+care se gaseste in tema2.c 
+	Comanda watch - muta un serial in stiva currently_watching, serialul putandu-se 
+afla atat in listele celor 4 categorii cat si in coada watch_later, conform indicatiilor date.
+Comanda este implementata cu ajutorul functiilor MutaCW() - din liste, MutaCWQ() - din coada
+watch_later, AddDS() - gestionare stiva currently_watching .
+	Comanda show - afiseaza lista de seriale din cele 4 categorii, coada si respectiv cele
+2 stive.
